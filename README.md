@@ -5,8 +5,10 @@ Copy from https://github.com/Factual/skuld/blob/master/src/skuld/flake.clj
 and
 https://github.com/maxcountryman/flake
 
-## Usage
 
+[![Clojars Project](http://clojars.org/tiensonqin/flake/latest-version.svg)]
+
+## Usage
 For example:
 
 ```clojure
