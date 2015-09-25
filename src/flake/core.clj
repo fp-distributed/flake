@@ -130,7 +130,7 @@
       (recur unsafe?)
       id)))
 
-(defn ^bytes id
+(defn id
   "Generate a new flake ID; returning a byte array."
   ([]
    (id nil))

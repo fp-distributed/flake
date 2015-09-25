@@ -1,4 +1,4 @@
-(defproject tiensonqin/flake "0.2.0"
+(defproject tiensonqin/flake "0.3.0"
   :description "Flake id generateion."
   :url "http://github.com/fp-distributed/flake"
   :license {:name "Eclipse Public License"
