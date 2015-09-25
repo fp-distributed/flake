@@ -113,29 +113,32 @@
                                              "time can't flow backwards.")))))))
 
 (defn generate
-  []
+  [unsafe?]
   (let [id (try
-             (let [t (linear-time)
+             (let [capacity (if unsafe? 12 20)
+                   t (linear-time)
                    c (count! t)
-                   b (ByteBuffer/allocate 20)]
+                   b (ByteBuffer/allocate capacity)]
                (.putLong b t)
                (.putInt b (count! t))
-               (.put b node-fragment*)
+               (when-not unsafe? (.put b node-fragment*))
                (.array b))
              (catch IllegalStateException e
                                         ; Lost the race to count for this time; retry.
                ::recur))]
     (if (= id ::recur)
-      (recur)
+      (recur unsafe?)
       id)))
 
 (defn ^bytes id
   "Generate a new flake ID; returning a byte array."
   ([]
-   (id :base62))
-  ([type]
-   (let [new-id (generate)]
-     (case type
+   (id nil))
+  ([{:keys [encode unsafe?]
+     :or {encode :base62
+          unsafe? false}}]
+   (let [new-id (generate unsafe?)]
+     (case encode
        :base62 (base62-encode (bigint new-id))
        :int (bigint new-id)
        new-id))))
