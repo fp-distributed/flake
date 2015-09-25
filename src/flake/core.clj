@@ -141,7 +141,7 @@
      (case encode
        :base62 (base62-encode (bigint new-id))
        :int (bigint new-id)
-       new-id))))
+       :bytes new-id))))
 
 (defn byte-buffer
   "Wraps a byte[] in a ByteBuffer."

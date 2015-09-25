@@ -14,10 +14,14 @@ For example:
 ```clojure
 => (require '[flake.core :as flake])
 => (flake/init!)
+;; encode default to base62, safe operation
 => (flake/id)
-"Ga4OtIWNrbC4guVc7NXv7eV"
-=> (flake/id :int)
-25978563106299135585558915252224N
-=> (flake/id :bytes)
+"GdYPPDcoLxO4NyoZRTVQHYj"
+=> (flake/id {:encode :int})
+114338374141286187205851229083666043835927N
+=> (flake/id {:encode :int
+              :unsafe? true}
+6198295858610941460481N
+=> (flake/id {:encode :bytes})
 #object["[B" 0x61d495da "[B@61d495da"]
 ```
